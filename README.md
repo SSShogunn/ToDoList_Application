@@ -1,1 +1,1 @@
-a simple application using ExpressJS, NodeJS, EJS & Bootstrap
+A simple application using ExpressJS, NodeJS, EJS & Bootstrap
