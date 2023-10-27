@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
 
-<div class="card m-4">
+<div class="card m-5 p-2">
     <table class="table">
         <tr class="table-secondary">
             <th>Name</th>
@@ -23,15 +23,23 @@
                     <td><%= item.date %></td>
                     <td><%= item.description %></td>
                     <td>
-                        <form method="POST" action="/delete">
-                            <input type="hidden" name="id" value="<%= item.id %>">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        <div style="display: flex; gap: 10px;">
+                            <form method="POST" action="/delete">
+                                <input type="hidden" name="id" value="<%= item.id %>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <form method="POST" action="/edit/<%= item.id %>">
+                                <input type="hidden" name="id" value="<%= item.id %>">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </div>  
                     </td>
                 </tr>
             <% }); %>
         <% } %>
     </table>
 </div>
+
+
 
 <%- include("partials/footer.ejs") %>

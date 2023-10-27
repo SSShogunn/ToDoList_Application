@@ -33,6 +33,45 @@ app.post('/submit', (req, res) => {
     res.redirect('/');
 });
 
+app.post('/edit/:id', (req, res) => {
+
+    const itemId = req.body.id;
+
+    const dataBuffer = fs.readFileSync('form-data.json');
+    const allData = JSON.parse(dataBuffer.toString());
+    
+    const itemToEdit = allData.find(item => item.id === itemId);
+
+    if (itemToEdit) {
+        res.render('edit.ejs', { itemToEdit });
+    } else {
+        res.send('Item not found');
+    }
+
+});
+
+app.post('/update/:id', (req, res ) => {
+    const itemId = req.params.id;
+
+    const dataBuffer = fs.readFileSync("form-data.json");
+    const allData = JSON.parse(dataBuffer.toString());
+
+    const itemToUpdate = allData.find(item => item.id === itemId);
+
+    if (itemToUpdate) {
+        itemToUpdate.name = req.body.name;
+        itemToUpdate.title = req.body.title;
+        itemToUpdate.date = req.body.date;
+        itemToUpdate.description = req.body.description;
+
+        fs.writeFileSync('form-data.json', JSON.stringify(allData));
+        res.redirect('/');
+
+    }else {
+        res.send('Item not found');
+    }
+});
+
 app.post('/delete', (req, res) => {
     const itemId = req.body.id;
     
@@ -46,6 +85,8 @@ app.post('/delete', (req, res) => {
     res.redirect('/');
 });
 
+
+
 app.get('/add-task', (req, res) => {
     res.render('add-task.ejs');
 });
@@ -57,6 +98,25 @@ app.get('/about', (req, res) => {
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function saveFormData(data) {
 

@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="form-container">
+        <h3>Edit Item</h3>
+        <form method="POST" action="/update/<%= itemToEdit.id %>">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= itemToEdit.name %>" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= itemToEdit.title %>" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="<%= itemToEdit.date %>" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required><%= itemToEdit.description %></textarea>
+
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+    </div>
+
+<%- include("partials/footer.ejs") %>
