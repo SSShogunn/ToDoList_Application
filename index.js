@@ -5,7 +5,7 @@ import ejs from 'ejs';
 import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
-const port = 3000;
+const port = 9291;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
